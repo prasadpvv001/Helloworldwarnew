@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t mvn_dockor .'
+                sh 'docker build -t mvn_docker .'
             }
         }
         stage('Push Docker Image') {
