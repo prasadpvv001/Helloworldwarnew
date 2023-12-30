@@ -9,15 +9,15 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withDockerRegistry([ credentialsId: "docker-hub-creds", url:""]) {
-                    sh 'docker tag mvn_docker ashokvpalankar/ashok:$BUILD_NUMBER'
-                    sh 'docker push ashokvpalankar/ashok:$BUILD_NUMBER' 
+                    sh 'docker tag mvn_docker pvv001/prasad1:$BUILD_NUMBER'
+                    sh 'docker push pvv001/prasad1:$BUILD_NUMBER' 
                 }
             }
         }
         stage('Deploy Step') {
             steps {
                withDockerRegistry([ credentialsId: "docker-hub-creds", url:""]) {
-                sh 'docker pull ashokvpalankar/ashok:$BUILD_NUMBER'
+                sh 'docker pull pvv001/prasad1:$BUILD_NUMBER'
                }
                 sh 'docker rm -f tom_docker'
                 sh 'docker run -itd -p 8060:8080 --name tom_docker mvn_docker'
